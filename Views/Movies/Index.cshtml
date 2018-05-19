@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Vidly.Models.Movie>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+@*ボタンを変更する*@
+<button type="submit" class="btn btn-primary">@Html.ActionLink("New Movie", "New", new { controller = "Movies" })</button>
+
+@if (!Model.Any())
+{
+    <p>We don't have any movies yet</p>
+}
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Movies</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+
+        {
+            <tr>
+                <td>@Html.ActionLink(movie.Name, "Edit", new { id = movie.Id, controller = "Movies" })</td>
+                <td>@movie.Genre.GenreName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
